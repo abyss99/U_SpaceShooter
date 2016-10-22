@@ -22,6 +22,7 @@ GameObject:
   - 33: {fileID: 33000011749634816}
   - 65: {fileID: 65000014131435466}
   - 23: {fileID: 23000013385493638}
+  - 114: {fileID: 114000013459203848}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -90,3 +91,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000013459203848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013764941084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a281e2fd0c321429a84bcc60873166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparkEffect: {fileID: 100006, guid: 0438351a6e6422d43a09930e9be00ee9, type: 2}
