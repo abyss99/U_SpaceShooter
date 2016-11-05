@@ -16,11 +16,17 @@ public class PlayerCtrl : MonoBehaviour
 
 	public Transform mTransform;
 	public Animation anim;
-	public float moveSpeed = 5.0f;
+	public float moveSpeed = 2.5f;
 	private float vertical;
 	private float horizontal;
 	private float rot;
 	public PlayerAnim playerAnim;
+
+	private float initHP = 100.0f;
+	private float currHP = 100.0f;
+
+	public delegate void PlayerDieHandler();
+	public static event PlayerDieHandler OnPlayerDie;
 
 	void Start ()
 	{
@@ -51,19 +57,41 @@ public class PlayerCtrl : MonoBehaviour
 //		mTransform.Translate (Vector3.right * 0.1f * horizontal);
 		Vector3 dir = (Vector3.forward * vertical) + (Vector3.right * horizontal);
 		mTransform.Translate (dir.normalized * Time.deltaTime * moveSpeed); //normalized는 방향 벡터만 추출한 값이다, deltaTime은 지난 프레임과 현재 프레임 소요 시간
-		mTransform.Rotate (Vector3.up * 80.0f * Time.deltaTime * rot);
+		mTransform.Rotate (Vector3.up * 150.0f * Time.deltaTime * rot);
 
 		if (vertical >= 0.1f) {
-			anim.CrossFade (playerAnim.runForward.name, 0.3f);
+			anim.CrossFade (playerAnim.runForward.name, 0.01f);
 		} else if (vertical <= -0.1f) {
-			anim.CrossFade (playerAnim.runBackward.name, 0.3f);
+			anim.CrossFade (playerAnim.runBackward.name, 0.01f);
 		} else if (horizontal >= 0.1f) {
-			anim.CrossFade (playerAnim.runRight.name, 0.3f);
+			anim.CrossFade (playerAnim.runRight.name, 0.01f);
 		} else if (horizontal <= -0.1f) {
-			anim.CrossFade (playerAnim.runLeft.name, 0.3f);
+			anim.CrossFade (playerAnim.runLeft.name, 0.01f);
 		} else {
-			anim.CrossFade (playerAnim.idle.name, 0.3f);
+			anim.CrossFade (playerAnim.idle.name, 0.01f);
 		}
+	}
+
+	void OnTriggerEnter(Collider coll) {
+		if (coll.tag == "PUNCH")
+		{
+			currHP -= 10.0f;
+			if (currHP <= 0.0f)
+			{
+				PlayerDie();
+			}
+		}
+	}
+
+	void PlayerDie()
+	{
+//		GameObject[] monsters = GameObject.FindGameObjectsWithTag("MONSTER");
+//
+//		foreach(GameObject monster in monsters) {
+//			monster.SendMessage("YouWin", SendMessageOptions.DontRequireReceiver);
+//		}
+        GameMgr.isGameOver = true;
+		OnPlayerDie();
 	}
 
 }

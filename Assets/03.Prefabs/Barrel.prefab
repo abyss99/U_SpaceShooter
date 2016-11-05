@@ -21,12 +21,12 @@ GameObject:
   - 4: {fileID: 4000013694220756}
   - 33: {fileID: 33000013303412508}
   - 23: {fileID: 23000011930094642}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 17
   m_IsActive: 1
 --- !u!1 &1000013436761992
 GameObject:
@@ -40,12 +40,13 @@ GameObject:
   - 114: {fileID: 114000011163079416}
   - 114: {fileID: 114000013760249366}
   - 82: {fileID: 82000012842364642}
-  m_Layer: 0
+  - 208: {fileID: 208000011962741342}
+  m_Layer: 11
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 17
   m_IsActive: 1
 --- !u!4 &4000010570502162
 Transform:
@@ -54,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013436761992}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.91, y: 0, z: 10.87}
+  m_LocalPosition: {x: 3.87, y: 0, z: 5.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -226,3 +227,18 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
+--- !u!208 &208000011962741342
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013436761992}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.8, y: 1, z: 0.8}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5

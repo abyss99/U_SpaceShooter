@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BulletCtrl : MonoBehaviour {
 
-	//private Rigidbody rbody;
+	public float damage = 20.0f;
 
 	// Use this for initialization
 	void Start () {

@@ -23,12 +23,12 @@ GameObject:
   - 65: {fileID: 65000014131435466}
   - 23: {fileID: 23000013385493638}
   - 114: {fileID: 114000013459203848}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 19
   m_IsActive: 1
 --- !u!4 &4000010417947030
 Transform:

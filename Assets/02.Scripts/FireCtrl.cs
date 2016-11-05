@@ -9,19 +9,39 @@ public class FireCtrl : MonoBehaviour {
 	public MeshRenderer muzzleFlash;
 
 	private AudioSource _audio;
+	public Light fireFlash;
 
+	public float fireRate = 0.1f;
+	private float nextFire = 0.0f;
+	private RaycastHit hit;
 
 	// Use this for initialization
 	void Start () {
 		_audio = GetComponent<AudioSource> ();
 		muzzleFlash.enabled = false;
+		fireFlash.intensity = 0.0f;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown (0)) {
-			Fire ();
+		Debug.DrawRay(firePos.position, firePos.forward * 10.0f, Color.green);
+
+		if (Input.GetMouseButton (0)) {
+			if (Time.time >= nextFire)
+			{
+				Fire();
+
+				if(Physics.Raycast(firePos.position, firePos.forward, out hit, 10.0f, 1<<9)) { //9번 레어만 검출한다는 의미
+						hit.collider.GetComponent<MonsterCtrl>().OnDamage(hit.point, 20.0f); 
+				}
+
+				if(Physics.Raycast(firePos.position, firePos.forward, out hit, 20.0f, 1<<11)) { //9번 레어만 검출한다는 의미
+					hit.collider.GetComponent<BarrelCtrl>().OnDamage(); 
+				}
+
+				nextFire = Time.time + fireRate;
+			}
 		}
 	}
 
@@ -41,7 +61,10 @@ public class FireCtrl : MonoBehaviour {
 
 		muzzleFlash.transform.localScale = Vector3.one * scale; //균등 스케일
 		muzzleFlash.enabled = true;
+		fireFlash.intensity = Random.Range(4.0f, 5.5f);
 		yield return new WaitForSeconds (Random.Range(0.05f, 0.2f));
 		muzzleFlash.enabled = false;
+		fireFlash.intensity = 0.0f;
+
 	}
 }

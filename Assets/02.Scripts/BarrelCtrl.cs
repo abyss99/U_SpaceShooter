@@ -40,4 +40,13 @@ public class BarrelCtrl : MonoBehaviour {
 	void ExpPlaySound () {
 		_audio.PlayOneShot (bombSfx, 4.0f);
 	}
+
+	public void OnDamage() {
+		hitCount++;
+		if (hitCount >= 3) {
+			hitCount = -100;
+			ExpBarrel ();
+		}
+	}
+
 }
