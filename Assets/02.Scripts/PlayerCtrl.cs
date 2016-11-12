@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class PlayerAnim
@@ -24,6 +25,7 @@ public class PlayerCtrl : MonoBehaviour
 
 	private float initHP = 100.0f;
 	private float currHP = 100.0f;
+    public Image hpBar;
 
 	public delegate void PlayerDieHandler();
 	public static event PlayerDieHandler OnPlayerDie;
@@ -76,6 +78,7 @@ public class PlayerCtrl : MonoBehaviour
 		if (coll.tag == "PUNCH")
 		{
 			currHP -= 10.0f;
+            hpBar.fillAmount = currHP / initHP;
 			if (currHP <= 0.0f)
 			{
 				PlayerDie();
@@ -90,7 +93,7 @@ public class PlayerCtrl : MonoBehaviour
 //		foreach(GameObject monster in monsters) {
 //			monster.SendMessage("YouWin", SendMessageOptions.DontRequireReceiver);
 //		}
-        GameMgr.isGameOver = true;
+        GameMgr.instance.isGameOver = true;
 		OnPlayerDie();
 	}
 

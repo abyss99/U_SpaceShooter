@@ -122,6 +122,7 @@ public class MonsterCtrl : MonoBehaviour
 	}
 
 	void MonsterDie() {
+        GameMgr.instance.DisplayScore(50);
 		anim.SetTrigger("Die");
 		StopAllCoroutines();
 		nvAgent.Stop();
